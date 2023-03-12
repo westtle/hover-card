@@ -1,0 +1,192 @@
+:root {
+    --font-size-primary: 0.906rem; /* 14.5px */
+    --font-size-secondary: 0.688rem; /* 11px */
+
+    --foreground: rgba(255, 255, 255, 0.9);
+    --background: #040303;
+
+    --border-color: rgba(255, 255, 255, 0.85);
+    --border-shorthand: 0.063rem solid var(--border-color);
+
+    --seven: 0.438rem; /* 7px */
+    --twelve: 0.75rem; /* 12px */
+}
+
+*, *::before, *::after {
+    color: var(--foreground);
+    background-color: var(--background);
+    box-sizing: border-box;
+}
+
+body { /* Left & right spacing is left & right from default body margin + 12px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 91vh;
+    margin-top: 4.5vh;
+    margin-bottom: 4.5vh;
+    padding: var(--twelve);
+    font-size: var(--font-size-primary);
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    max-width: 17.5rem;
+}
+
+#hover-card {
+    font-family: 'Raleway', sans-serif;
+}
+
+.__card {
+    background: url("https://picsum.photos/1280/720.jpg") no-repeat;
+    background-size: auto 110%;
+    border-radius: 3px;
+    min-height: 25rem;
+    text-align: justify;
+    box-shadow: 0 0 30px 3px #111111;
+    overflow: hidden;
+    transition: all 0.55s;
+
+    position: relative;
+}
+
+.__card::before {
+    content: "";
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.58s;
+
+    position: absolute;
+}
+
+._text,
+.title_,
+.paragraph_ {
+    background: none;
+    margin: 0;
+}
+
+._text {
+    padding: 0.9375rem;
+    transition: all ease 0.58s;
+
+    position: absolute;
+    bottom: -8.625rem;
+}
+
+.title_ {
+    margin-bottom: 0.9375rem;
+    margin-top: 0.9375rem;
+    font-weight: 200;
+}
+
+.paragraph_ {
+    font-weight: 200;
+}
+
+.__card:hover {
+    background-position: 0 -1.5625rem;
+}
+
+.__card:hover::before {
+    opacity: 1;
+}
+
+.__card:hover ._text {
+    bottom: 0;
+}
+
+/* Chevron / Link */
+
+#notice {
+    background: none;
+    margin-top: 0.26875rem;
+
+    position: relative;
+}
+
+#chevron-checkbox {
+    display: none;
+}
+
+.chevron {
+    background: none;
+    border: none;
+    height: 2.1875rem;
+    width: 2.1875rem;
+    padding: 0;
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: transform ease 0.1s;
+
+    position: relative;
+}
+
+.chevron::before {
+    content: "";
+    background: url("../Images/chevron-right.svg") no-repeat center;
+    background-size: 100%;
+    width: 1.3125rem;
+    height: 1.3125rem;
+    filter: invert(100%);
+    opacity: 0.8;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.link {
+    background: none;
+    width: 100%;
+    height: 0;
+    padding: 0 var(--seven);
+    font-size: var(--font-size-secondary);
+    line-height: 1.1;
+    word-wrap: break-word;
+    opacity: 0;
+    transition: all ease 0.1s;
+    visibility: hidden;
+
+    position: absolute;
+    top: 2.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* If Opened */
+
+#chevron-checkbox:checked + .chevron {
+    transform: rotate(90deg);
+}
+
+#chevron-checkbox:checked + .chevron + .link {
+    height: calc(100% + 4.5vh + var(--twelve));
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Media Query */
+
+@media (hover: hover) {
+    .chevron::before {
+        opacity: 0.6;
+    }
+
+    .chevron:hover::before {
+        opacity: 0.8;
+    }
+}
+
+/* Font Size */
+@media (max-width: 30rem) { /* 480px */
+    html {
+        font-size: calc(1rem - 10%);
+    }
+}
+/* -------- */
